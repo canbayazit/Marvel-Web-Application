@@ -7,11 +7,9 @@ const CharacterTable = () => {
   return (
     <div className={style.container}>
       {characterItem.map((item, index) => (
-        <div className={style.card} key={item.id}>
-          <div className={style.img}>
-            <img src={item.thumbnail.path + "/portrait_uncanny.jpg"} alt="" />
-          </div>
-          <div>
+        <div className={style.quart}>
+          <div className={style.card} key={item.id}>
+            <img src={item.thumbnail.path + "/portrait_incredible.jpg"} alt="" />
             <h3>{item.name}</h3>
             <button>LEARN MORE</button>
           </div>
