@@ -2,6 +2,7 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { limit } from "../Constant/constants";
 
+//global state
 const initialState = {
     characterList: [], // array of characters
     queryResult: [], // array of results
@@ -9,7 +10,8 @@ const initialState = {
     offset: 0, // offset for pagination
     query: "", // query for search
     page : 0,
-    status: "idle" 
+    status: "idle",
+    scrollLoad: false,
   };
 
   export const getCharacters = createAsyncThunk (
@@ -24,7 +26,9 @@ const initialState = {
     name: "characters",
     initialState:initialState,
     reducers:{
-
+      loadMore : (state,action) => {
+        state.scrollLoad = true;
+    }
 
     },
     extraReducers: {
@@ -32,10 +36,11 @@ const initialState = {
         state.status = "loading";
     },
       [getCharacters.fulfilled] : (state,action) => {  // veri ekrana geldikten sonra yapılması gerekenler
-        state.items =[...state.characterList,...action.payload];
+        state.characterList =[...state.characterList,...action.payload];
         state.status = "succeed";
-        state.page += 1;
-        state.scroollLoad = false;
+        state.page += 1; // veri geldiğinde page 1 yapıyoruz ve bunu scrollbar en aşağı aşağı indiğinde 
+        // yeni page verisini home sayfasında getCharacters thunk'ına dispatch ediyoruz
+        state.scrollLoad = false;
 
         if(action.payload.length <30){
             state.hasNextPage = false;
@@ -51,5 +56,5 @@ const initialState = {
 
 
 
-
+  export const {loadMore} = characterSlice.actions;
 export default characterSlice.reducer;

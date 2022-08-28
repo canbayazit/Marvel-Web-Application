@@ -6,11 +6,8 @@
         margin-top: 50px;
        
         .quart{
-            padding: 10px;
-            position: relative;         
-            // overflow:hidden;
-            
-            z-index: 3;
+            padding: 0px;
+            position: relative; 
             transition-duration:  0.5s ;
             border-radius: 30px;
             &:hover{
@@ -22,10 +19,9 @@
             //     0 0 0 10px #ff000022,
             //     0 0 0 20px #ff000011,
             //     0 0 20px #ff0000,
-            //     0 0 50px #ff0000;
-                z-index: 999;
-                border: 8px solid 008000;           
-                filter: drop-shadow(0 0 20px conic-gradient( rgb(167, 33, 33) 0 15%, rgb(27, 27, 160) 20% 35%, rgb(87, 160, 27) 40% 55%,  rgb(218, 155, 20) 60% 75%, rgb(123, 18, 193) 80% 95%,) )
+            //     0 0 50px #ff0000;       
+                      
+                // filter: drop-shadow(0 0 20px conic-gradient( rgb(167, 33, 33) 0 15%, rgb(27, 27, 160) 20% 35%, rgb(87, 160, 27) 40% 55%,  rgb(218, 155, 20) 60% 75%, rgb(123, 18, 193) 80% 95%,) )
      
               }        
     
@@ -34,12 +30,10 @@
             position: absolute;
             // width: 250%;
             // height: 200%;
-            width: calc(100% + 10px);
-            height: calc(100% + 10px);
-            top:-200px;
-            left: -200px;
-            top:-5px;
-            left: -5px;
+            width: calc(100% + 8px);
+            height: calc(100% + 8px);            
+            top:-4px;
+            left: -4px;
             // inset: -50px 00px;
             border-radius: 30px;
         
