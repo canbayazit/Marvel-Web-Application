@@ -6,18 +6,25 @@ import { limit } from "../Constant/constants";
 const initialState = {
     characterList: [], // array of characters
     queryResult: [], // array of results
-    isLoading: true, // boolean to show loading spinner
-    offset: 0, // offset for pagination
+    isLoading: true, // boolean to show loading spinner    
     query: "", // query for search
-    page : 0,
+    offset: 0, 
     status: "idle",
     scrollLoad: false,
   };
 
   export const getCharacters = createAsyncThunk (
-    'characters/getCharacters', async(page)=>{
-      const res = await axios(`https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&offset=${page*limit}&apikey=437d4802af06645527d3a4e4e56da6f2`);
-      return res.data.data.results;
+    'characters/getCharacters', async(obj,thunkAPI)=>{
+    const {offset,query}=obj;
+        const characterURL = `https://gateway.marvel.com:443/v1/public/characters?limit=30&offset=${offset}&apikey=437d4802af06645527d3a4e4e56da6f2`;
+        const searchURL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=437d4802af06645527d3a4e4e56da6f2`;
+      console.log("thunk query",query,offset)
+      console.log(searchURL)
+  
+        const result = await axios(thunkAPI.getState().characters.query==="" ? characterURL : searchURL);
+        return result.data.data.results;
+     
+       
     }
   );
 
@@ -27,24 +34,48 @@ const initialState = {
     initialState:initialState,
     reducers:{
       loadMore : (state,action) => {
-        state.scrollLoad = true;
-    }
-
+        state.offset += 30;
+    },  
+    setQuery: (state, action) => {
+      state.query = action.payload;
+    },
+    reset: (state) => {
+      // Reset values ​​to initial value
+      state.characterList = [];
+      state.queryResult = [];
+      state.offset = 0;
+    },
     },
     extraReducers: {
       [getCharacters.pending] : (state,action) => {  // veri ekrana gelene kadar yapılması gerekenler
         state.status = "loading";
     },
       [getCharacters.fulfilled] : (state,action) => {  // veri ekrana geldikten sonra yapılması gerekenler
-        state.characterList =[...state.characterList,...action.payload];
-        state.status = "succeed";
-        state.page += 1; // veri geldiğinde page 1 yapıyoruz ve bunu scrollbar en aşağı aşağı indiğinde 
-        // yeni page verisini home sayfasında getCharacters thunk'ına dispatch ediyoruz
-        state.scrollLoad = false;
+        if (state.query !== "") {
+          state.queryResult = [...state.queryResult, ...action.payload];
+          state.characterList = state.queryResult;
+          state.status = "succeed";
+          console.log("query varken",state.characterList,state.queryResult )
+        } else {
+          state.characterList = [...state.characterList, ...action.payload];
 
-        if(action.payload.length <30){
-            state.hasNextPage = false;
+          state.status = "succeed";
         }
+      
+        // if (state.query !== "") {
+        //   state.queryResult = [...state.queryResult, ...action.payload];
+        //   state.characterList = state.queryResult;          
+        // }else{
+        //   state.characterList =[...state.characterList,...action.payload];
+        //   
+        //   state.page += 1; // veri geldiğinde page 1 yapıyoruz ve bunu scrollbar en aşağı aşağı indiğinde 
+        //   // yeni page verisini home sayfasında getCharacters thunk'ına dispatch ediyoruz
+        //   state.scrollLoad = false;
+  
+        //   if(action.payload.length <30){
+        //       state.hasNextPage = false;
+        //   }
+        // }
     },
     [getCharacters.rejected] : (state,action) => { // veri ekrana gelmesi başarısız olduysa yapılması gerekenler
       state.status="failed";
@@ -56,5 +87,5 @@ const initialState = {
 
 
 
-  export const {loadMore} = characterSlice.actions;
+  export const {loadMore,setQuery,reset} = characterSlice.actions;
 export default characterSlice.reducer;

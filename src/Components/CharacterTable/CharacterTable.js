@@ -10,13 +10,13 @@ import {loadMore} from '../../Store/characterSlice';
 const CharacterTable = () => {
   // const { characterItem } = useData();
   // Context API gibi useData mantığıyla global stateteki verilerimizi useSelector ile buraya aktarıyoruz
-  const characterList = useSelector((state) => state.characters.characterList); // state / slice name / state property
-  const page = useSelector((state) => state.characters.page);
-  const hasNextPage = useSelector((state) => state.characters.hasNextPage);
-  const error = useSelector((state) => state.characters.error);
-  const status = useSelector((state) => state.characters.status);
-  const scroollLoad = useSelector((state) => state.characters.scroollLoad);
-
+  // const characterList = useSelector((state) => state.characters.characterList); // state / slice name / state property
+  // const hasNextPage = useSelector((state) => state.characters.hasNextPage);
+  // const error = useSelector((state) => state.characters.error);
+  // const scroollLoad = useSelector((state) => state.characters.scroollLoad);
+  const { characterList, query,status,offset } = useSelector(
+    (store) => store.characters
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -26,38 +26,13 @@ const CharacterTable = () => {
       }
   },[status,dispatch])
 
-  useEffect(() => {
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
 
-
-
-  function handleScroll() {
-      if ((window.innerHeight + document.documentElement.scrollTop) +1 !== document.documentElement.offsetHeight) {
-          // console.log("scroll")
-          // console.log("innerHeight" , window.innerHeight);
-          // console.log("scrolltop",document.documentElement.scrollTop);
-          // console.log("offset",document.documentElement.offsetHeight);
-          // console.log("windowscrollY", window.scrollY)
-          return null;
-      }
-      
-      
-          
-
-      dispatch(loadMore());
-      // console.log("load")
-  }
 
   useEffect(() => {
-    if(scroollLoad && status === "succeeded" && hasNextPage){
-        dispatch(getCharacters(page));
-      //   console.log("scroll")
-      //   console.log(page)
+    dispatch(getCharacters({offset,query }));
+  }, [offset,query]);
 
-    }
-},[scroollLoad,dispatch,status,page])
+ 
 
   return (
    
