@@ -4,27 +4,31 @@ import { limit } from "../Constant/constants";
 
 //global state
 const initialState = {
-    characterList: [], // array of characters
-    queryResult: [], // array of results
-    isLoading: true, // boolean to show loading spinner    
-    query: "", // query for search
-    offset: 0, 
-    status: "idle",
-    scrollLoad: false,
+    characterList: [], // başta ilk 30 karakterimizin tutulduğu array limiti arttırırsak daha fazla karakterde tutabiliriz
+    queryResult: [], // search bar kısmına yazılana göre filtreleyip ekrana gelen karakterlerimizin tutulduğu array
+    query: "", // search bar kısmına yazdıklarımız query propertysine setlenir
+    offset: 0, // apidan gelen verimizin limitini 30 yaptık offset 1 dersek 31. veriyi bize çeker 
+    //31. veriden önceki verileri skipler
+    status: "idle",  //loading ekranı için gerekli status property'si
+    allCharacters:0,  // api içerisinde mevcut olan bütün marvel karakterlerinin sayısını tutan property
+    //başlangıçta sıfır tanımladık.
   };
 
   export const getCharacters = createAsyncThunk (
-    'characters/getCharacters', async(obj,thunkAPI)=>{
+    'characters/getCharacters', async(obj,thunkAPI)=>{  // 2 argüman alır 1. değişken veya değişkenlerden oluşan object 2. thunkAPI
     const {offset,query}=obj;
-        const characterURL = `https://gateway.marvel.com:443/v1/public/characters?limit=30&offset=${offset}&apikey=437d4802af06645527d3a4e4e56da6f2`;
+        const characterURL = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&offset=${offset}&apikey=437d4802af06645527d3a4e4e56da6f2`;
         const searchURL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=437d4802af06645527d3a4e4e56da6f2`;
       console.log("thunk query",query,offset)
       console.log(searchURL)
   
         const result = await axios(thunkAPI.getState().characters.query==="" ? characterURL : searchURL);
-        return result.data.data.results;
+        
+        return result.data.data; // karakterlerimizin tutulduğu array results propertysinin içinde 
+        // bizde ondan önceki kısmı çekiyoruz sebebi total propertysine ulaşmak
+        // çünkü total property si toplam karakter sayısını tutuyor onuda kodumuzda kullanacaz.
      
-       
+       // thunkAPI
     }
   );
 
@@ -33,14 +37,13 @@ const initialState = {
     name: "characters",
     initialState:initialState,
     reducers:{
-      loadMore : (state,action) => {
+      loadMore : (state) => {
         state.offset += 30;
     },  
     setQuery: (state, action) => {
       state.query = action.payload;
     },
-    reset: (state) => {
-      // Reset values ​​to initial value
+    reset: (state) => {    
       state.characterList = [];
       state.queryResult = [];
       state.offset = 0;
@@ -51,31 +54,20 @@ const initialState = {
         state.status = "loading";
     },
       [getCharacters.fulfilled] : (state,action) => {  // veri ekrana geldikten sonra yapılması gerekenler
+        state.allCharacters=action.payload.total
+        console.log("data",action.payload.total, state.total)
+
         if (state.query !== "") {
-          state.queryResult = [...state.queryResult, ...action.payload];
+          state.queryResult = [...state.queryResult, ...action.payload.results];
           state.characterList = state.queryResult;
           state.status = "succeed";
           console.log("query varken",state.characterList,state.queryResult )
         } else {
-          state.characterList = [...state.characterList, ...action.payload];
+          state.characterList = [...state.characterList, ...action.payload.results];
 
           state.status = "succeed";
         }
       
-        // if (state.query !== "") {
-        //   state.queryResult = [...state.queryResult, ...action.payload];
-        //   state.characterList = state.queryResult;          
-        // }else{
-        //   state.characterList =[...state.characterList,...action.payload];
-        //   
-        //   state.page += 1; // veri geldiğinde page 1 yapıyoruz ve bunu scrollbar en aşağı aşağı indiğinde 
-        //   // yeni page verisini home sayfasında getCharacters thunk'ına dispatch ediyoruz
-        //   state.scrollLoad = false;
-  
-        //   if(action.payload.length <30){
-        //       state.hasNextPage = false;
-        //   }
-        // }
     },
     [getCharacters.rejected] : (state,action) => { // veri ekrana gelmesi başarısız olduysa yapılması gerekenler
       state.status="failed";
@@ -87,5 +79,5 @@ const initialState = {
 
 
 
-  export const {loadMore,setQuery,reset} = characterSlice.actions;
+export const {loadMore,setQuery,reset} = characterSlice.actions;
 export default characterSlice.reducer;

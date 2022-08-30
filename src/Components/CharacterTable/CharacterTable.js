@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Loading from "../Loading/Loading";
 import { getCharacters } from "../../Store/characterSlice";
 import {loadMore} from '../../Store/characterSlice';
+import InfiniteScroll from "react-infinite-scroll-component";
 const CharacterTable = () => {
   // const { characterItem } = useData();
   // Context API gibi useData mantığıyla global stateteki verilerimizi useSelector ile buraya aktarıyoruz
@@ -14,7 +15,7 @@ const CharacterTable = () => {
   // const hasNextPage = useSelector((state) => state.characters.hasNextPage);
   // const error = useSelector((state) => state.characters.error);
   // const scroollLoad = useSelector((state) => state.characters.scroollLoad);
-  const { characterList, query,status,offset } = useSelector(
+  const { characterList, query,status,offset,allCharacters} = useSelector(
     (store) => store.characters
   );
   const dispatch = useDispatch();
@@ -35,10 +36,16 @@ const CharacterTable = () => {
  
 
   return (
-   
+   <InfiniteScroll
+   dataLength={characterList.length} // data uzunluğu
+   hasMore={allCharacters>30 ? true : false} // true oldukça InfiniteScroll çalışır
+   next={()=>offset<allCharacters && dispatch(loadMore(offset))} // scroll bar en aşağıya ulaştıktan sonra çalışan fonksiyon, burda scroll en aşağıya ulaşınca daha fazla karakter getirmesini trigger lıyoruz
+   loader={status ==="loading"  && <Loading/> }  // loading ekranı için
+
+   >
     <div className={style.container}>    
       {characterList.map((item, index) => (     
-        <div className={style.quart} key={item.id}>
+        <div className={style.quart} key={index}>
           <div className={style.card}  >
             <img src={item.thumbnail.path + "/portrait_incredible.jpg"} alt={item.name} />
             <h3>{item.name}</h3>
@@ -47,11 +54,9 @@ const CharacterTable = () => {
         </div>
         
       ))}
-        {             
-             status ==="loading"  && <Loading/>      
-      }
+    
     </div>
-   
+    </InfiniteScroll>
   );
 };
 

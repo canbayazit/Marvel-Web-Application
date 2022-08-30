@@ -46,13 +46,14 @@
             // rgba(255, 255, 255, 0.5) 50%,
             // rgba(255, 255, 255, 0.1) 55%,
             // transparent 100%);
-            transition:all 2s;
+            // transition:all 2s;
             transform:rotate(-45deg);
            
             //  animation: shine 6s infinite forwards;     
-             //animation: arrow  2s linear infinite;
+            animation: arrow  5s linear infinite;
             // transform: rotate(-20deg) translateX(-100px) translateY(-50px);
-            transition-delay: 6s;
+  
+           
         }
         // @keyframes shine{
         //     0%{top:-120%;left:-120%;}
@@ -62,9 +63,11 @@
             
         //   }
         @keyframes arrow {
-          
-            0% {
-                transform: rotate(-20deg) translate(-130px,-75px);
+          0%{
+            transform: rotate(-20deg) translate(-140px,-75px);
+          }
+            60% {
+                transform: rotate(-20deg) translate(-140px,-75px);
             }
          
             100% {
