@@ -1,6 +1,5 @@
 
     .container{    
-        // border: 5px solid blue;
         display: grid; 
         grid-template-columns: repeat(4,1fr); 
         gap:30px;
@@ -13,29 +12,18 @@
             transition-duration:  0.5s ;
             border-radius: 30px;
             &:hover{
-                transform: scale(1.1);  
-                // box-shadow: 0 0 20px conic-gradient(rgb(167, 33, 33) 0 15%, rgb(27, 27, 160) 20% 35%, rgb(87, 160, 27) 40% 55%,  rgb(218, 155, 20) 60% 75%, rgb(123, 18, 193) 80% 95%);
-           
-                // filter: drop-shadow(0 0 20px conic-gradient( rgb(167, 33, 33) 0 15%, rgb(27, 27, 160) 20% 35%, rgb(87, 160, 27) 40% 55%,  rgb(218, 155, 20) 60% 75%, rgb(123, 18, 193) 80% 95%,) )
-     
+                transform: scale(1.1);              
               }        
     
          &:hover:before, &:hover:after {
             content: "";
-            position: absolute;
-            // width: 250%;
-            // height: 200%;
+            position: absolute;         
             width: calc(100% + 8px);
             height: calc(100% + 8px);            
             top:-4px;
-            left: -4px;
-     
-            border-radius: 30px;
-        
-     
-        // background: conic-gradient( rgb(167, 33, 33) 0 15%, rgb(27, 27, 160) 20% 35%, rgb(87, 160, 27) 40% 55%,  rgb(218, 155, 20) 60% 75%, rgb(123, 18, 193) 80% 95%,);
+            left: -4px;  
+            border-radius: 30px;    
             background: linear-gradient(45deg, blue  0 15% , rgb(1, 255, 1) 20% 35%, red 40% 55%,  orange 60% 75% , purple 80% 100%);
-        
             background-size: 400%;
             animation: rotate 17s linear infinite;
             z-index: -1;        
@@ -44,12 +32,7 @@
          &:hover:after{       
              filter: blur(15px);
          }
-        
-        //  @keyframes rotate {
-        //    100%{
-        //         transform: rotate(1turn);
-        //     }
-        //  }
+   
          @keyframes rotate {
             0%{
                  background-position: 0 0;
@@ -68,8 +51,7 @@
             justify-content: center;
             flex-direction: column;         
             width: 250px;  
-            background-color: #202020; 
-            position: relative;
+            background-color: #202020;    
             border-radius: 30px;           
             z-index: 1;
             img{
@@ -87,13 +69,74 @@
                 text-align: center;         
                 max-height: 20px;
             }
-            button{
-                padding: 10px;
-                width: 150px;
-                margin: 30px 0px;
-            
+            .buttonX{
+                margin-bottom: 30px;
+                width: 140px;
+                height: 50px;
+                position: relative;
+                background-color: transparent;
+                border-color: transparent;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    border-style: solid;
+                    border-width: 1px 1px 0 0; 
+                    border-color: #fff; 
+                    width: 120px;              
+                    height: 16px;
+                    // border: 1px solid red;
+                    position: absolute;
+                    right: 0px;
+                   top:0;
+                    z-index: 999;
+                    
+                }
+                &:before{
+                    content: "";
+                    position: absolute;
+                    border-style: solid;
+                    border-width: 0 0 1px 1px; 
+                    border-color: #fff; 
+                    width: 120px;              
+                    height: 16px;
+                    // border: 1px solid red;
+                    position: absolute;
+                   bottom:0;
+                    left: 0px;
+                    z-index: 999;
+                }
+                .span{
+                    color: white;
+                    border-left: 1px solid #fff;
+                    border-right: 1px solid #fff;
+                    position: relative;
+                    left:0;
+                    right: 0;
+                    line-height: 20px;
+                    padding: 0 27.5px;
+                    text-align: center;
+                    &::before{
+                        content: "";
+                        position: absolute;
+                       top: -70px;
+                       left: -50px;
+                        position: absolute;
+                        background-color: aqua;
+                        z-index: 999;
+                    }
+                    &::after{
+                        content: "";
+                        position: absolute;
+                       top: -70px;
+                       left: -50px;
+                        position: absolute;
+                        background-color: aqua;
+                        z-index: 999;
+                    }
+                }
             }
-      
+            
+          
                     }           
                 }
    
