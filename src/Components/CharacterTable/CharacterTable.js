@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loading from "../Loading/Loading";
 import { getCharacters } from "../../Store/characterSlice";
+import { setCharacter } from "../../Store/characterDetailSlice";
 import {loadMore} from '../../Store/characterSlice';
 import InfiniteScroll from "react-infinite-scroll-component";
 const CharacterTable = () => {
@@ -33,7 +34,11 @@ const CharacterTable = () => {
     dispatch(getCharacters({offset,query }));
   }, [offset,query]);
 
- 
+ const handleClick = (item)=>{
+  dispatch(setCharacter(item));
+  navigate( "/detail");
+
+ }
 
   return (
    <InfiniteScroll
@@ -41,7 +46,7 @@ const CharacterTable = () => {
    hasMore={allCharacters>30 ? true : false} // true oldukça InfiniteScroll çalışır
    next={()=>offset<allCharacters && dispatch(loadMore(offset))} // scroll bar en aşağıya ulaştıktan sonra çalışan fonksiyon, burda scroll en aşağıya ulaşınca daha fazla karakter getirmesini trigger lıyoruz
    loader={status ==="loading"  && <Loading/> }  // loading ekranı için
-
+   style={{overflow:'hidden' }}
    >
     <div className={style.container}>    
       {characterList.map((item, index) => (     
@@ -49,12 +54,11 @@ const CharacterTable = () => {
           <div className={style.card}  >
             <img src={item.thumbnail.path + "/portrait_incredible.jpg"} alt={item.name} />
             <h3>{item.name}</h3>
-            <button>LEARN MORE</button>
+            <button onClick={()=>handleClick(item)}>LEARN MORE</button>
           </div>
         </div>
         
-      ))}
-    
+      ))}    
     </div>
     </InfiniteScroll>
   );

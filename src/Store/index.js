@@ -1,10 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
-import characerReducer from './characterSlice'
-
+import characterReducer from './characterSlice';
+import comicsReducer from './characterDetailSlice';
 export const store = configureStore({
 
     reducer:{
-        characters:characerReducer,
+        characters:characterReducer,
+        comics:comicsReducer
     },
 
 });

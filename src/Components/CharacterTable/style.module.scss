@@ -5,7 +5,7 @@
         grid-template-columns: repeat(4,1fr); 
         gap:30px;
         margin-top: 50px;
-     padding:0 50px;
+        padding:0 50px;
       
         .quart{
             padding: 0px;
@@ -15,14 +15,7 @@
             &:hover{
                 transform: scale(1.1);  
                 // box-shadow: 0 0 20px conic-gradient(rgb(167, 33, 33) 0 15%, rgb(27, 27, 160) 20% 35%, rgb(87, 160, 27) 40% 55%,  rgb(218, 155, 20) 60% 75%, rgb(123, 18, 193) 80% 95%);
-
-            //  box-shadow: 
-            //     0 0 0 5px #ff000033 ,
-            //     0 0 0 10px #ff000022,
-            //     0 0 0 20px #ff000011,
-            //     0 0 20px #ff0000,
-            //     0 0 50px #ff0000;       
-                      
+           
                 // filter: drop-shadow(0 0 20px conic-gradient( rgb(167, 33, 33) 0 15%, rgb(27, 27, 160) 20% 35%, rgb(87, 160, 27) 40% 55%,  rgb(218, 155, 20) 60% 75%, rgb(123, 18, 193) 80% 95%,) )
      
               }        
@@ -87,12 +80,11 @@
                 
             }    
             h3{
-                font-family: "Bungee", cursive;
+               
                 color: #fff;
                 font-size: 15px;         
                 margin: 40px 0 10px 0 ;
-                text-align: center;
-                overflow: visible;
+                text-align: center;         
                 max-height: 20px;
             }
             button{

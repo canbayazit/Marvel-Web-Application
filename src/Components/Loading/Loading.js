@@ -1,8 +1,10 @@
 import React from 'react'
-
+import style from './style.module.scss'
 const Loading = () => {
   return (
-    <div>Loading</div>
+    <div className={style.container}>
+    <div className={style.loading}></div>
+    </div>
   )
 }
 

@@ -1,9 +1,13 @@
-import React from 'react'
-
+import React from 'react';
+import CosmicTable from '../../Components/ComicTable/ComicTable';
+import style from "./style.module.scss";
 const Detail = () => {
   return (
-    <div>Detail</div>
+    <div className={style.container}>
+    <CosmicTable/>
+  </div>
+ 
   )
 }
 
-export default Detail
+export default Detail;
