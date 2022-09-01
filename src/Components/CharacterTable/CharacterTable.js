@@ -54,7 +54,7 @@ const CharacterTable = () => {
           <div className={style.card}  >
             <img src={item.thumbnail.path + "/portrait_incredible.jpg"} alt={item.name} />
             <h3>{item.name}</h3>
-            <button className={style.buttonX} onClick={()=>handleClick(item)}><span className={style.span}>LEARN MORE</span></button>
+            <button className={style.buttonX} onClick={()=>handleClick(item)}><span className={style.span} >LEARN MORE</span></button>
           </div>
         </div>
         

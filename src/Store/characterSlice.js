@@ -1,6 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { limit } from "../Constant/constants";
+import { hash, limit } from "../Constant/constants";
 
 //global state
 const initialState = {
@@ -17,8 +17,8 @@ const initialState = {
   export const getCharacters = createAsyncThunk (
     'characters/getCharacters', async(obj,thunkAPI)=>{  // 2 argüman alır 1. değişken veya değişkenlerden oluşan object 2. thunkAPI
     const {offset,query}=obj;
-        const characterURL = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&offset=${offset}&apikey=437d4802af06645527d3a4e4e56da6f2`;
-        const searchURL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=437d4802af06645527d3a4e4e56da6f2`;
+        const characterURL = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&offset=${offset}&apikey=437d4802af06645527d3a4e4e56da6f2&hash=${hash}`;
+        const searchURL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=437d4802af06645527d3a4e4e56da6f2&hash=${hash}`;
       console.log("thunk query",query,offset)
       console.log(searchURL)
   
