@@ -12,7 +12,7 @@ export const getComics = createAsyncThunk("comics/getComics", async (id) => {
 
 
   const result = await axios(
-    `https://gateway.marvel.com:443/v1/public/characters/${id}/comics?limit=10&apikey=437d4802af06645527d3a4e4e56da6f2&hash=${hash}`
+    `https://gateway.marvel.com:443/v1/public/characters/${id}/comics?ts=1&limit=10&apikey=437d4802af06645527d3a4e4e56da6f2&hash=${hash}`
   );
 
   return result.data.data.results;
