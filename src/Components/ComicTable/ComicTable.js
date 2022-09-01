@@ -24,16 +24,18 @@ const Detail = () => {
             ? "No description given"
             : character.description}
         </p>
-        <h2>COMICS</h2>
+        <h1>COMICS</h1>
       </div>
 
       <div className={style.cardContainer}>
         {comics.map((item, index) => (
           <div className={style.resDiv}>
             <div className={style.quart} key={index}>
+              <div className={style.img}>
               <img src={item.thumbnail.path + ".jpg"}  alt="" />
+              </div>
               <div className={style.title}>
-                <h3>{item.title}</h3>
+                <h2>{item.title}</h2>
               </div>
             </div>
           </div>

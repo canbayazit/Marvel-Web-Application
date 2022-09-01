@@ -40,7 +40,7 @@ export default function App() {
                 }
             },
             "opacity": {
-                "value": 0.8,
+                "value": 0.9,
                 "random": false,
                 "anim": {
                     "enable": false,
@@ -50,7 +50,7 @@ export default function App() {
                 }
             },
             "size": {
-                "value": 9,
+                "value": 12,
                 "random": false,
                 "anim": {
                     "enable": false,
