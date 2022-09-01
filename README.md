@@ -10,6 +10,7 @@ React ile geliştirdiğim Marvel Web Uygulaması.
 * SCSS (module) for Styling
 * Axios for calling Marvel API
 * Practicles Library for Background
+* Infinite Scroll for Each 30 Characters
 
 ## Uygulamayı Denemek İçin Tıklayın
 
