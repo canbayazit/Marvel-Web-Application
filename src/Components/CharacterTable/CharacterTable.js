@@ -46,15 +46,23 @@ const CharacterTable = () => {
    hasMore={allCharacters>30 ? true : false} // true oldukça InfiniteScroll çalışır
    next={()=>offset<allCharacters && dispatch(loadMore(offset))} // scroll bar en aşağıya ulaştıktan sonra çalışan fonksiyon, burda scroll en aşağıya ulaşınca daha fazla karakter getirmesini trigger lıyoruz
    loader={status ==="loading"  && <Loading/> }  // loading ekranı için
-   style={{overflow:'hidden' }}
+   style={{overflow:'hidden'}}
    >
     <div className={style.container}>    
       {characterList.map((item, index) => (     
         <div className={style.quart} key={index}>
-          <div className={style.card}  >
-            <img src={item.thumbnail.path + "/portrait_incredible.jpg"} alt={item.name} />
+          <div className={style.card}   >
+            <div className={style.characterImg}>
+            <img src={item.thumbnail.path + "/portrait_incredible.jpg"} alt="" />
+            </div>
+            <div className={style.charName}>
             <h3>{item.name}</h3>
+            </div>
+            <div className={style.charButton}>
             <button className={style.buttonX} onClick={()=>handleClick(item)}><span className={style.span} >LEARN MORE</span></button>
+            </div>
+          </div>
+          <div className={style.info}>
           </div>
         </div>
         
@@ -63,5 +71,5 @@ const CharacterTable = () => {
     </InfiniteScroll>
   );
 };
-
+//style={{backgroundImage: `url(${item.thumbnail.path + "/portrait_incredible.jpg"})`}}
 export default CharacterTable;

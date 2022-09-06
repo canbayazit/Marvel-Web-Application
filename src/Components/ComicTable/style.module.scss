@@ -87,16 +87,18 @@
             border-bottom: 3px solid #ff0044;
         }
     }
-    .cardContainer{
-        display: flex; 
-        flex-wrap: wrap;
+    .comicContainer{
+        
+        display: grid; 
+        grid-template-columns: repeat(2,1fr); 
+ 
         align-items: center;
         justify-content: center;      
         text-align: center;
         margin:0 45px;
   
         .resDiv{
-            flex: 50%;
+           
         .quart{           
             display: flex;              
   
@@ -156,3 +158,252 @@
     }
     }
 }
+// @media only screen and (max-width: 1440px){
+//     .container{    
+       
+       
+       
+//         display: flex; 
+//         flex-wrap: wrap;
+//         .comicContainer{
+//             margin: 0 30px;
+//             .resDiv{
+//                 flex:50%;
+//                 .quart{
+                
+//                     .img{
+//                         height: 100%;
+//                         img{
+                      
+                         
+//                             border-radius: 25px 0 0 25px ;
+//                             width:  250px;
+//                             height: 260px;
+//                             // width:  100%;
+//                             // height:  100%;
+//                             object-fit: cover;
+//                             display: inline-block;
+//                             border-right: 5px solid #dfd2d2;
+                            
+                            
+//                         }
+//                     }
+//                 }
+//             }
+            
+//         }
+    
+// }
+// }
+@media only screen and (max-width: 1280px){
+    .container{    
+       
+       
+       
+      
+        .comicContainer{
+            
+            display: grid; 
+            grid-template-columns: repeat(2,1fr); 
+            .resDiv{
+        
+                .quart{
+                
+                    .img{
+                        height: 100%;
+                        img{
+                      
+                         
+                            border-radius: 25px 0 0 25px ;
+                            width:  200px;
+                            height: 260px;
+                            // width:  100%;
+                            // height:  100%;
+                            object-fit: cover;
+                            display: inline-block;
+                            border-right: 5px solid #dfd2d2;
+                            
+                            
+                        }
+                    }
+                    .title{
+                        width: 240px;
+                    }
+                }
+            }
+            
+        }
+}
+}
+     
+@media only screen and (max-width: 900px){
+    .container{    
+       
+        
+       
+        .comicContainer{
+            
+            display: grid; 
+            grid-template-columns: repeat(2,1fr); 
+            .resDiv{
+        
+                .quart{
+                
+                    .img{
+                        height: 100%;
+                        img{
+                      
+                         
+                            border-radius: 25px 0 0 25px ;
+                            width:  150px;
+                            height: 260px;
+                            // width:  100%;
+                            // height:  100%;
+                            object-fit: cover;
+                            display: inline-block;
+                            border-right: 5px solid #dfd2d2;
+                            
+                            
+                        }
+                    }
+                    .title{
+                        width: 200px;
+                    }
+                }
+            }
+            
+        }
+    
+        
+}
+}
+
+@media only screen and (max-width:768px){
+.container{    
+   
+
+   
+    .comicContainer{
+            
+        display: grid; 
+        grid-template-columns: repeat(2,1fr); 
+        .resDiv{
+    
+            .quart{
+            
+                .img{
+                    height: 100%;
+                    img{
+                  
+                     
+                        border-radius: 25px 0 0 25px ;
+                        width:  120px;
+                        height: 260px;
+                        // width:  100%;
+                        // height:  100%;
+                        object-fit: cover;
+                        display: inline-block;
+                        border-right: 5px solid #dfd2d2;
+                        
+                        
+                    }
+                }
+                .title{
+                    width: 200px;
+                }
+            }
+        }
+        
+    }
+
+  
+}
+}
+
+@media only screen and (max-width: 430px){
+.container{    
+
+
+.name{
+           width: 100%;
+           p{
+            padding: 30px 0 0 0;     
+           }
+       
+}
+    
+.comicContainer{
+    display: grid; 
+    grid-template-columns: repeat(1,1fr); 
+    .resDiv{
+
+        .quart{
+        
+            .img{
+                height: 100%;
+                img{
+              
+                 
+                    border-radius: 25px 0 0 25px ;
+                    width:  150px;
+                    height: 260px;
+                    // width:  100%;
+                    // height:  100%;
+                    object-fit: cover;
+                    display: inline-block;
+                    border-right: 5px solid #dfd2d2;
+                    
+                    
+                }
+            }
+        }
+    }
+    
+}
+   
+}
+}
+
+@media only screen and (max-width: 375px){
+    .container{    
+    
+    
+    .name{
+               width: 100%;
+               p{
+                padding: 30px 0 0 0;     
+               }
+           
+    }
+        
+    .comicContainer{
+        display: grid; 
+        grid-template-columns: repeat(1,1fr); 
+        .resDiv{
+    
+            .quart{
+            
+                .img{
+                    height: 100%;
+                    img{
+                  
+                     
+                        border-radius: 25px 0 0 25px ;
+                        width:  120px;
+                        height: 260px;
+                        // width:  100%;
+                        // height:  100%;
+                        object-fit: cover;
+                        display: inline-block;
+                        border-right: 5px solid #dfd2d2;
+                        
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+       
+    }
+    }

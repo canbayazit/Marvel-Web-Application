@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getComics } from "../../Store/characterDetailSlice";
@@ -10,7 +11,7 @@ const Detail = () => {
   useEffect(() => {
     dispatch(reset()); //
     dispatch(getComics(character.id)); // Thunk'a comics leri getirmesi için gerekli id gönderdik
-  }, [character.id]);
+  }, [character.id, dispatch]);
 
   return (
     <div className={style.container}>
@@ -27,12 +28,12 @@ const Detail = () => {
         <h1>COMICS</h1>
       </div>
 
-      <div className={style.cardContainer}>
+      <div className={style.comicContainer}>
         {comics.map((item, index) => (
           <div className={style.resDiv}>
             <div className={style.quart} key={index}>
               <div className={style.img}>
-              <img src={item.thumbnail.path + ".jpg"}  alt="" />
+                <img src={item.thumbnail.path + ".jpg"} alt="" />
               </div>
               <div className={style.title}>
                 <h2>{item.title}</h2>

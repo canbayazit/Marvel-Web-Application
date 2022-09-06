@@ -50,7 +50,7 @@ export default function App() {
                 }
             },
             "size": {
-                "value": 12,
+                "value": 10,
                 "random": false,
                 "anim": {
                     "enable": false,
