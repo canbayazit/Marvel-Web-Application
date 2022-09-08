@@ -17,7 +17,12 @@ const CharacterTable = () => {
   // const error = useSelector((state) => state.characters.error);
   // const scroollLoad = useSelector((state) => state.characters.scroollLoad);
   const { characterList, query,status,offset,allCharacters} = useSelector(
-    (store) => store.characters
+    (store) => store.characters   
+    //store diye biz kendimiz props yazıyoruz aslında bu yazdığımız props store'u temsil etmektedir.
+    // characters ismini biz Store klasöründe index.js içindeki storeda characterSlice'ı characters isimli kendimizin koyduğu property'e aktardık
+    // store içindeki (Store klasöründe index.js) characters diye property'e aktardığımız characterSlice'ımızı çağırıyoruz.
+    // ordan da characterSlice içindeki statelerimizi çağırıyoruz ..
+    
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();

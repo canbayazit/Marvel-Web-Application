@@ -7,8 +7,7 @@ const Home = () => {
   return (
     <div className={style.container}>
       <Header />
-      <CharacterTable />
-      {/* card item */}
+      <CharacterTable />     
     </div>
   );
 };
