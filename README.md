@@ -11,6 +11,7 @@ React ile geliştirdiğim Marvel Web Uygulaması.
 * Axios for calling Marvel API
 * Practicles Library for Background
 * Infinite Scroll for Each 30 Characters
+* Responsive Web Design
 
 ## Uygulamayı Denemek İçin Tıklayın
 
