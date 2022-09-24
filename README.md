@@ -2,6 +2,10 @@
 
 React ile geliştirdiğim Marvel Web Uygulaması.
 
+## Uygulamayı Denemek İçin Tıklayın
+
+Uygulamanın Demosu : [Uygulamayı Denemek İçin Tıklayın](https://marvelwebapplication.netlify.app/)
+
 ## KULLANILAN YAPILAR
 
 * React ve React Hooks
@@ -12,10 +16,6 @@ React ile geliştirdiğim Marvel Web Uygulaması.
 * Practicles Library for Background
 * Infinite Scroll for Each 30 Characters
 * Responsive Web Design
-
-## Uygulamayı Denemek İçin Tıklayın
-
-Uygulamanın Demosu : [Uygulamayı Denemek İçin Tıklayın](https://marvelwebapplication.netlify.app/)
 
 ## İçerik
 
