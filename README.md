@@ -13,7 +13,7 @@ Uygulamanın Demosu : [Uygulamayı Denemek İçin Tıklayın](https://marvelweba
 * Redux Toolkit for State Management
 * SCSS (module) for Styling
 * Axios for calling Marvel API
-* Practicles Library for Background
+* Particles Library for Background
 * Infinite Scroll for Each 30 Characters
 * Responsive Web Design
 
